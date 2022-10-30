@@ -1,7 +1,7 @@
 resource "aws_security_group" "main" {
   name        = "${var.env}-alb-sg"
   description = "this is a security group for alb"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_security_group_rule" "main_ingress" {

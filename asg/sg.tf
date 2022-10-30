@@ -1,7 +1,7 @@
 resource "aws_security_group" "main" {
   name        = "${var.env}-main-sg"
   description = "this is a security group for main instance"
-  vpc_id      = "vpc-0e176f3417bb9549e"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_security_group_rule" "main_ingress" {

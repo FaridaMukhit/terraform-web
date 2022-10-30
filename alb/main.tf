@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "main" {
   name     = replace(local.name, "rtype", "tg")
   port     = 80
   protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id
   health_check {
     path = "/"
     port = var.app_port
@@ -19,7 +19,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.main.id]
-  subnets            = data.aws_subnets.subnet.ids
+  subnets            = [ data.terraform_remote_state.vpc.outputs.public_subnet1_id, data.terraform_remote_state.vpc.outputs.public_subnet2_id, data.terraform_remote_state.vpc.outputs.public_subnet3_id ]
   tags = {
     Name = replace(local.name, "rtype", "alb")
   }

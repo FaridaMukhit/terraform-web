@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "main" {
-  name            = "${var.env}-main-lc"
+  name            = "${var.env}-main-lc-new"
   image_id        = "ami-06640050dc3f556bb"
   instance_type   = var.instance_type
   user_data       = data.template_file.userdata.rendered

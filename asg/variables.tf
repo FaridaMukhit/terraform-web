@@ -39,39 +39,3 @@ variable "ingress_ports" {
   description = "Variable for ingress ports"
   default     = ["22", "80"]
 }
-
-variable "pub_subnet_cidrA" {
-  type        = string
-  description = "cidr block of public subnet"
-  default     = "10.0.1.0/24"
-}
-
-variable "pub_subnet_cidrB" {
-  type        = string
-  description = "cidr block of public subnet"
-  default     = "10.0.2.0/24"
-}
-
-variable "pub_subnet_cidrC" {
-  type        = string
-  description = "cidr block of public subnet"
-  default     = "10.0.3.0/24"
-}
-
-variable "private_subnet_cidrA" {
-  type        = string
-  description = "cidr block of private subnet"
-  default     = "10.0.11.0/24"
-}
-
-variable "private_subnet_cidrB" {
-  type        = string
-  description = "cidr block of private subnet"
-  default     = "10.0.12.0/24"
-}
-
-variable "private_subnet_cidrC" {
-  type        = string
-  description = "cidr block of private subnet"
-  default     = "10.0.13.0/24"
-}

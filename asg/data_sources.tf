@@ -20,16 +20,20 @@ data "template_file" "userdata" {
   }
 }
 
-
-data "aws_subnets" "subnet" {
-  filter {
-    name   = "vpc-id"
-    values = [var.pub_subnet_cidrA, var.pub_subnet_cidrB, var.pub_subnet_cidrC, var.private_subnet_cidrA, var.private_subnet_cidrB, var.private_subnet_cidrC]
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "aws-session-may2022-backend-farida"
+    region = "us-east-1"
+    key    = "vpc/backend/terraform.tfstate"
   }
 }
 
-data "aws_subnet" "subnet" {
-  for_each = toset(data.aws_subnets.example.ids)
-  id       = each.value
+data "terraform_remote_state" "alb" {
+  backend = "s3"
+  config = {
+    bucket = "aws-session-may2022-backend-farida"
+    region = "us-east-1"
+    key    = "ALB/dev/terraform.tfstate"
+  }
 }
-
